@@ -46,7 +46,17 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
-ansible-galaxy -f install debops.mariadb_server
+ansible-galaxy -f install debops.ferm \
+                          debops.apt_preferences \
+                          debops.etc_services \
+                          debops.golang \
+                          debops.redis \
+                          debops.ruby \
+                          debops.nodejs \
+                          debops.postgresql \
+                          debops.mariadb \
+                          debops.nginx \
+                          debops.mariadb_server
 
 
 assert_playbook_check_runs
@@ -74,3 +84,4 @@ sudo cat /var/local/git/gitlab/config/resque.yml
 
 assert_url "http://localhost.localdomain/users/sign_in" 302
 
+assert_docs
