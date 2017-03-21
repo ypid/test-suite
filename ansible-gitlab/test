@@ -8,6 +8,8 @@
 . "${ROLESPEC_LIB}/main"
 . "${ROLESPEC_TEST}/../defaults.conf"
 
+echo "Test the documentation before all environment changes"
+assert_docs
 
 echo "Clean up the environment"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
@@ -84,4 +86,3 @@ sudo cat /var/local/git/gitlab/config/resque.yml
 
 assert_url "http://localhost.localdomain/users/sign_in" 302
 
-assert_docs
