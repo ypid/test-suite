@@ -1,1 +1,8 @@
+[debops_all_hosts]
+placeholder_fqdn
+
+[debops_service_sks]
+placeholder_fqdn
+
+[debops_sks]
 placeholder_fqdn
