@@ -17,5 +17,6 @@ ansible-galaxy -f install debops.apt_preferences
 
 
 assert_playbook_check_runs
+assert_ansible_check_diff
 assert_playbook_idempotent
 assert_docs
