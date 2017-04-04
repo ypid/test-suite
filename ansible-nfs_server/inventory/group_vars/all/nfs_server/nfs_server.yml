@@ -1,0 +1,11 @@
+---
+
+nfs_server__v3: True
+
+nfs_server__accept_any: True
+
+nfs_server__exports:
+
+  - path: '/srv/nfs/shared'
+    acl: '*'
+    options: [ 'subtree_check', 'rw', 'root_squash' ]
