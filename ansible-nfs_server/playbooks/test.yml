@@ -1,0 +1,20 @@
+---
+
+- hosts: 'placeholder_fqdn'
+  become: True
+
+  roles:
+
+    - role: debops.etc_services
+      etc_services__dependent_list:
+        - '{{ nfs_server__etc_services__dependent_list }}'
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ nfs_server__ferm__dependent_rules }}'
+
+    - role: debops.tcpwrappers
+      tcpwrappers__dependent_allow:
+        - '{{ nfs_server__tcpwrappers__dependent_allow }}'
+
+    - role: 'ansible-nfs_server'
