@@ -39,7 +39,7 @@
 
     - role: debops.mariadb
       tags: [ 'role::mariadb' ]
-      mariadb_users:
+      mariadb__dependent_users:
         - database: '{{ owncloud__database_map[owncloud__database].dbname }}'
           user: '{{ owncloud__database_map[owncloud__database].dbuser }}'
           password: '{{ owncloud__database_map[owncloud__database].dbpass }}'

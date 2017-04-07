@@ -1,11 +1,11 @@
 ---
 
-mariadb__users:
+mariadb__dependent_users:
 
   - name: 'testapp'
     owner: 'travis'
 
-mariadb__databases:
+mariadb__dependent_databases:
 
   - name: 'testapp'
 
