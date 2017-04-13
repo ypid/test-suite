@@ -1,0 +1,14 @@
+---
+
+- hosts: 'placeholder_fqdn'
+  become: True
+
+  roles:
+
+    - role: debops.ferm
+      ferm__dependent_rules:
+        - '{{ avahi__ferm__dependent_rules }}'
+
+    - role: 'ansible-avahi'
+
+    - role: debops.nsswitch
