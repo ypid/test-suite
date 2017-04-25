@@ -42,13 +42,24 @@ assert_path "/etc/pki/realms/domain"
 assert_in_file "/etc/pki/realms/domain/default.crt" "CERTIFICATE"
 assert_in_file "/etc/pki/realms/domain/default.key" "PRIVATE KEY"
 
+echo ""
 echo "Contents of the Root CA certificate"
+echo "-----------------------------------"
 openssl x509 -in /etc/pki/realms/domain/public/root.pem -text -noout
 
+echo ""
 echo "Contents of the intermediate CA certificate"
+echo "-------------------------------------------"
 openssl x509 -in /etc/pki/realms/domain/public/intermediate.pem -text -noout
 
+echo ""
 echo "Contents of the client certificate"
+echo "----------------------------------"
 openssl x509 -in /etc/pki/realms/domain/public/cert.pem -text -noout
+
+echo ""
+echo "Certificate chain vertification"
+echo "-------------------------------"
+openssl verify -CAfile /etc/pki/realms/domain/public/intermediate_root.pem /etc/pki/realms/domain/public/cert.pem
 
 assert_docs
