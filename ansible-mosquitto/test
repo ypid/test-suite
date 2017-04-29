@@ -21,6 +21,10 @@ assert_playbook_idempotent
 
 
 echo ""
+echo "apt-cache policy mosquitto"
+apt-cache policy mosquitto
+
+echo ""
 echo "netstat -lp"
 netstat -lp
 
