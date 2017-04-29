@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# test: Test debops.mosquitto
+# Copyright (C) 2014 Nick Janetakis <nick.janetakis@gmail.com>
+# Part of the DebOps project - http://debops.org/
+
+
+. "${ROLESPEC_LIB}/main"
+. "${ROLESPEC_TEST}/../defaults.conf"
+
+
+install_ansible ${test_ansible_version}
+ansible_plugins
+
+
+ansible-galaxy -f install debops.ferm debops.etc_services debops.tcpwrappers debops.secret debops.pki
+
+
+assert_playbook_check_runs
+assert_playbook_idempotent
+
+
+echo ""
+echo "netstat -lp"
+netstat -lp
+
+echo ""
+echo "Contents of /etc/mosquitto/passwd"
+sudo cat /etc/mosquitto/passwd
+
+echo ""
+echo "Contents of /etc/mosquitto/acl"
+sudo cat /etc/mosquitto/acl
+
+echo ""
+echo "Contents of /etc/mosquitto/conf.d/*"
+cat /etc/mosquitto/conf.d/*
+
+
+assert_path "/etc/mosquitto/conf.d/00_default.conf"
+assert_path "/etc/mosquitto/passwd"
+assert_path "/etc/mosquitto/acl"
+
+
+assert_running "mosquitto"
+
+
+# Test documentation
+assert_docs

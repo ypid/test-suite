@@ -1,0 +1,15 @@
+---
+
+mosquitto__allow: [ '192.168.0.0/16' ]
+
+mosquitto__allow_anonymous: 'true'
+
+mosquitto__auth_anonymous: 'topic readwrite #'
+
+mosquitto__auth_users:
+
+  - 'test-user-1'
+
+  - name: 'test-user-2'
+    acl:
+      - 'topic read $SYS/#'
