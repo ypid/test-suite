@@ -13,6 +13,9 @@ install_ansible ${test_ansible_version}
 ansible_plugins
 
 
+ansible-galaxy -f install debops.apt_preferences
+
+
 purge openjdk-6-jre openjdk-7-jre default-jre default-jre-headless
 
 
