@@ -20,9 +20,9 @@ assert_playbook_check_runs
 assert_playbook_idempotent
 
 
-echo "Status of APT preferences for heatbeat package"
+echo "Status of APT preferences for Elastic packages"
 echo "----------------------------------------------"
-apt-cache policy heartbeat
+apt-cache policy elasticsearch kibana heartbeat
 
 
 echo "Contents of the Ansible local facts"
