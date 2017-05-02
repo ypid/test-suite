@@ -9,6 +9,10 @@
 . "${ROLESPEC_TEST}/../defaults.conf"
 
 
+echo "Purge elasticsearch before installation"
+sudo apt-get -y --purge 'elasticsearch*'
+
+
 install_ansible ${test_ansible_version}
 ansible_plugins
 
