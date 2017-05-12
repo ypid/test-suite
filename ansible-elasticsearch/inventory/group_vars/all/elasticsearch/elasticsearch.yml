@@ -1,0 +1,6 @@
+---
+
+elasticsearch__configuration:
+
+  - name: 'bootstrap.memory_lock'
+    value: False
