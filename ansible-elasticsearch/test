@@ -31,9 +31,6 @@ sudo apt-get -y install openjdk-8-jdk
 stop elasticsearch
 purge elasticsearch
 
-echo "apt-cache policy elasticsearch"
-apt-cache policy elasticsearch
-
 
 assert_playbook_check_runs
 assert_playbook_idempotent

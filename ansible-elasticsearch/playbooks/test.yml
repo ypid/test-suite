@@ -29,7 +29,8 @@
       ferm__dependent_rules:
         - '{{ elasticsearch__ferm__dependent_rules }}'
 
-    - role: debops.java
+    # OpenJDK 8 is installed manually on Travis
+    #- role: debops.java
 
     - role: debops.elastic_co
       elastic_co__dependent_packages:
