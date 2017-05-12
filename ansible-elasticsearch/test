@@ -16,11 +16,14 @@ ansible_plugins
 ansible-galaxy -f install debops.apt_preferences debops.etc_services debops.ferm debops.java debops.secret debops.elastic_co
 
 
+echo "dpkg -l | grep java"
+dpkg -l | grep java
+
 echo "java -version"
 java -version
 
 echo "Purge current Java"
-sudo apt-get --purge -y remove 'openjdk*'
+sudo apt-get --purge -y remove 'openjdk*' "oracle-java*"
 
 echo "Install OpenJDK 8"
 sudo add-apt-repository -y ppa:openjdk-r/ppa
