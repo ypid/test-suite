@@ -44,12 +44,15 @@ assert_playbook_check_runs
 assert_playbook_idempotent
 
 
-echo "dpkg -l | grep elasticsearch"
-dpkg -l | grep elasticsearch
+echo "apt-cache policy elasticsearch"
+apt-cache policy elasticsearch
 
 echo "netstat -lp"
 netstat -lp
 
+
+echo "Elasticsearch logs"
+sudo bash -c 'cat /var/log/elasticsearch/*.log'
 
 assert_path "/etc/elasticsearch/elasticsearch.yml"
 
