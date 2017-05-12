@@ -12,7 +12,7 @@
 install_ansible ${test_ansible_version}
 ansible_plugins
 
-ansible-galaxy -f install debops.etc_services debops.ferm debops.java
+ansible-galaxy -f install debops.etc_services debops.ferm debops.java debops.secret debops.elastic_co
 
 
 stop elasticsearch
@@ -23,12 +23,11 @@ assert_playbook_check_runs
 assert_playbook_idempotent
 
 
-assert_in_file "/etc/services.d/20_local_service_elasticsearch-multicast" "54328"
+assert_path "/etc/elasticsearch/elasticsearch.yml"
 
-assert_iptables_allow "9200:9300"
-assert_iptables_allow "9300:9400"
+assert_running "elasticsearch"
 
-assert_url "http://${ROLESPEC_FQDN}:9200"
+assert_url "http://localhost:9200"
 
 
 assert_docs

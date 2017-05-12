@@ -1,13 +1,25 @@
 ---
 
-- name: Manage Elasticsearch server
-  hosts: [ 'debops_service_elasticsearch_master',
-           'debops_service_elasticsearch_workhorse',
-           'debops_service_elasticsearch_coordinator',
-           'debops_service_elasticsearch_loadbalancer' ]
+- name: Manage Elasticsearch cluster
+  hosts: [ 'debops_service_elasticsearch',
+           'debops_service_elasticsearch_master',
+           'debops_service_elasticsearch_data',
+           'debops_service_elasticsearch_ingest',
+           'debops_service_elasticsearch_lb' ]
   become: True
 
   roles:
+
+    - role: ansible-elasticsearch/env
+
+    - role: debops.secret
+      secret__directories:
+        - '{{ elasticsearch__secret__directories }}'
+
+    - role: debops.apt_preferences
+      apt_preferences__dependent_list:
+        - '{{ java__apt_preferences__dependent_list }}'
+        - '{{ elastic_co__apt_preferences__dependent_list }}'
 
     - role: debops.etc_services
       etc_services__dependent_list:
@@ -18,5 +30,9 @@
         - '{{ elasticsearch__ferm__dependent_rules }}'
 
     - role: debops.java
+
+    - role: debops.elastic_co
+      elastic_co__dependent_packages:
+        - '{{ elasticsearch__elastic_co__dependent_packages }}'
 
     - role: ansible-elasticsearch
