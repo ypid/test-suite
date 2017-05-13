@@ -50,9 +50,9 @@ apt-cache policy elasticsearch
 echo "netstat -lp"
 netstat -lp
 
+echo "Cluster state"
+curl http://localhost:9200/_cluster/health
 
-echo "Elasticsearch logs"
-sudo bash -c 'cat /var/log/elasticsearch/*.log'
 
 assert_path "/etc/elasticsearch/elasticsearch.yml"
 
