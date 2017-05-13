@@ -1,0 +1,4 @@
+---
+
+# But of course Travis-CI lies about the POSIX capabilities, because why not...
+elasticsearch__memory_lock: False
