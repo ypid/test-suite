@@ -16,6 +16,9 @@ ansible_plugins
 ansible-galaxy -f install debops.apt_preferences debops.etc_services debops.ferm debops.java debops.secret debops.elastic_co
 
 
+echo "Ansible facts"
+ansible all -m setup -b
+
 echo "java -version"
 java -version
 
@@ -52,6 +55,9 @@ netstat -lp
 
 echo "Cluster state"
 curl http://localhost:9200/_cluster/health
+
+echo "Elasticsearch logs"
+sudo bash -c 'cat /var/log/elasticsearch/*.log'
 
 
 assert_path "/etc/elasticsearch/elasticsearch.yml"
