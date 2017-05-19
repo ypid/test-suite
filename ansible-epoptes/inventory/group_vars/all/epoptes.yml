@@ -1,0 +1,9 @@
+---
+# vim: foldmarker=[[[,]]]:foldmethod=marker
+
+epoptes__cert_key_size: 2048
+epoptes__deploy_modes:
+  - 'prepare_client'
+  # - 'teacher'
+  # - 'student'
+  - 'postsync'

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+. "${ROLESPEC_LIB}/main"
+. "${ROLESPEC_TEST}/../defaults.conf"
+
+# Install packages manually because `epoptes__deploy_modes` is overloaded to
+# test as many code paths as possible.
+apt-get -yq install epoptes epoptes-client
+
+install_ansible ${test_ansible_version}
+ansible_plugins
+
+assert_playbook_check_runs
+
+# dpkg-divert is not idempotent on Ubuntu 14.04? Works on jessie.
+# Disabled for now:
+# assert_playbook_idempotent
+
+assert_docs
